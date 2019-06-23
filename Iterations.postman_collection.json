@@ -1,0 +1,2749 @@
+{
+	"info": {
+		"_postman_id": "ca2a0043-0a8f-4e5f-bf5f-f8c405f75ca4",
+		"name": "Iterations",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GLOBAL",
+			"item": [
+				{
+					"name": "Response examples",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								""
+							]
+						},
+						"description": "- 401 / Unathorised - JWT token is missing or invalid\n- 403 / Forbidden - User doesn't have required permissions\n- 404 / Not Found - URL not found\n- 422 / Unprocessable Entity - Not enough data for request (or invalid)"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "OPTIONS",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n\t\"typ\": \"success\",\n\t\"msg\": \"\",\n\t\"dat\": {\n\t\t\"\": \"\"\n\t}\n}\n"
+						},
+						{
+							"name": "Invalid / Unprocessable Entity",
+							"originalRequest": {
+								"method": "OPTIONS",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"typ\": \"error\",\n    \"msg\": \"Unprocessable Entity\",\n    \"dat\": {\n        \"invalid\": [\n            \"\"\n        ]\n    }\n}"
+						},
+						{
+							"name": "Invalid / Forbidden",
+							"originalRequest": {
+								"method": "OPTIONS",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"typ\": \"error\",\n    \"msg\": \"Forbidden\"\n}"
+						},
+						{
+							"name": "Invalid / Not found",
+							"originalRequest": {
+								"method": "OPTIONS",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n\t\"typ\": \"error\",\n\t\"msg\": \"Not Found\"\n}"
+						},
+						{
+							"name": "Invalid / Unauthorized",
+							"originalRequest": {
+								"method": "OPTIONS",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n\t\"typ\": \"error\",\n\t\"msg\": \"Unauthorized\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Empty",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_persistent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/orm",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"orm"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ce984b41-e34d-4095-b2e9-c075573ef48f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "bd740711-aec3-41be-8604-57edde5ea773",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "global roles",
+			"item": [
+				{
+					"name": "Get global roles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_persistent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/roles",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch user role",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_persistent}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"test-g8765\",\n\t\"role\": 4\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/role",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"role"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "55ce1f99-e53f-4a0c-9e55-d2cb2c60e96a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "e1fe925a-7145-4b1c-97e4-69b64f495912",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "notification",
+			"item": [
+				{
+					"name": "Update notification read status",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_persistent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/notification/:id_notification",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"notification",
+								":id_notification"
+							],
+							"variable": [
+								{
+									"key": "id_notification",
+									"value": "15"
+								}
+							]
+						},
+						"description": "Notification has \"isRead\" status. API request toggle this status."
+					},
+					"response": []
+				},
+				{
+					"name": "Remove notification",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_persistent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/notification/:id_notification",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"notification",
+								":id_notification"
+							],
+							"variable": [
+								{
+									"key": "id_notification",
+									"value": "15"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "notifications",
+			"item": [
+				{
+					"name": "Get user notification list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_persistent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/notifications",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"notifications"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bf595a5a-cdde-4cab-a859-a8182b0365b1",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "3d7e1918-5d02-4443-91f6-86aceff5bf59",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "ping",
+			"item": [
+				{
+					"name": "Ping without authorization",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "992f22d1-5bf2-4464-acab-e44a0ff51629",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/ping/auth/without",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"ping",
+								"auth",
+								"without"
+							]
+						},
+						"description": "Simple ping request. Doesn't need Authorization header."
+					},
+					"response": []
+				},
+				{
+					"name": "Ping with authorization",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d007a0b5-a2ea-4fbc-ae7e-088b0d66344f",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_persistent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/ping/auth/with",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"ping",
+								"auth",
+								"with"
+							]
+						},
+						"description": "Simple ping request. Requires Authorization header."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "project",
+			"item": [
+				{
+					"name": "metadata",
+					"item": [
+						{
+							"name": "Get project metadata",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/metadata",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"metadata"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "43"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update project public data",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"categoryId\": 1,\n    \"name\": \"sfasdf\",\n    \"descriptionPublic\": \"dfd\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/metadata/public",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"metadata",
+										"public"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update project tags",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "{{token_persistent}}"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tags\": [\"tags\", \"newtag\"]\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/metadata/tags",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"metadata",
+										"tags"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update project private data",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\n\t\"descriptionPrivate\": \"Description private\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/metadata/private",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"metadata",
+										"private"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update searchability",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/metadata/searchability",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"metadata",
+										"searchability"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update content visibility",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/metadata/visibility",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"metadata",
+										"visibility"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update archivation",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/metadata/archivation",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"metadata",
+										"archivation"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "snapshots",
+					"item": [
+						{
+							"name": "Get snapshot list",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/iteration/:id_iteration/snapshots",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"iteration",
+										":id_iteration",
+										"snapshots"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										},
+										{
+											"key": "id_iteration",
+											"value": "47"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create snapshot",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"parts\": [\n        {\n            \"tasks\": [\n                44\n            ],\n            \"document\": {\n                \"interpreter\": \"text-plain\",\n                \"store\": {\n                    \"title\": \"Part 1\",\n                    \"body\": \"Text\"\n                }\n            }\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/iteration/:id_iteration/snapshots",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"iteration",
+										":id_iteration",
+										"snapshots"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										},
+										{
+											"key": "id_iteration",
+											"value": "47"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b84e090e-d078-4115-a046-3633b1fcb6ad",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "2b3f3ed7-b397-403a-a8e9-c67797357941",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "snapshot",
+					"item": [
+						{
+							"name": "grades",
+							"item": [
+								{
+									"name": "Get grades",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token_persistent}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{host}}/api/project/:id_project/iteration/:id_iteration/snapshot/:id_snapshot/grades",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"project",
+												":id_project",
+												"iteration",
+												":id_iteration",
+												"snapshot",
+												":id_snapshot",
+												"grades"
+											],
+											"variable": [
+												{
+													"key": "id_project",
+													"value": "45"
+												},
+												{
+													"key": "id_iteration",
+													"value": "47"
+												},
+												{
+													"key": "id_snapshot",
+													"value": "13"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Grade snapshot",
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{token_persistent}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"grades\": [\n        {\n            \"id\": 3,\n            \"points\": 4,\n            \"message\": \"Example\"\n        }\n    ]\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/project/:id_project/iteration/:id_iteration/snapshot/:id_snapshot/grades",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"project",
+												":id_project",
+												"iteration",
+												":id_iteration",
+												"snapshot",
+												":id_snapshot",
+												"grades"
+											],
+											"variable": [
+												{
+													"key": "id_project",
+													"value": "45"
+												},
+												{
+													"key": "id_iteration",
+													"value": "47"
+												},
+												{
+													"key": "id_snapshot",
+													"value": "11"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Get snapshot",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/iteration/:id_iteration/snapshot/:id_snapshot",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"iteration",
+										":id_iteration",
+										"snapshot",
+										":id_snapshot"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										},
+										{
+											"key": "id_iteration",
+											"value": "47"
+										},
+										{
+											"key": "id_snapshot",
+											"value": "11"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Send snapshot for grading",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/iteration/:id_iteration/snapshot/:id_snapshot",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"iteration",
+										":id_iteration",
+										"snapshot",
+										":id_snapshot"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										},
+										{
+											"key": "id_iteration",
+											"value": "47"
+										},
+										{
+											"key": "id_snapshot",
+											"value": "11"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "parts",
+					"item": [
+						{
+							"name": "Get all parts",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/parts",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"parts"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create part",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"interpreter\": \"image-plain\",\n\t\"store\": {\n\t\t\"title\": \"Image\",\n\t\t\"body\": \"https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png\"\n\t}\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/parts",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"parts"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "part",
+					"item": [
+						{
+							"name": "Get part",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/part/:id_part",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"part",
+										":id_part"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										},
+										{
+											"key": "id_part",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update part",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"interpreter\": \"text-plain\",\n\t\"store\": {\n\t\t\"title\": \"Updated title\",\n\t\t\"body\": \"Uptext\"\n\t}\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/part/:id_part",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"part",
+										":id_part"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										},
+										{
+											"key": "id_part",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove part",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/part/:id_part",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"part",
+										":id_part"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										},
+										{
+											"key": "id_part",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Part complete task",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"tasks\": [46]\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/part/:id_part/completes",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"part",
+										":id_part",
+										"completes"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										},
+										{
+											"key": "id_part",
+											"value": "15"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "roles",
+					"item": [
+						{
+							"name": "Get project roles",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/roles",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"roles"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "44"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create role",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Android developer\",\n\t\"capacity\": 10\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/roles",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"roles"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "44"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update free contributors",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/roles/contributors",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"roles",
+										"contributors"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "87d669c1-6e2a-4d32-b94f-e84834548056",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "3b653e9e-e89c-49b2-90b1-fe6462f4beef",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "role",
+					"item": [
+						{
+							"name": "Update role",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Role name\",\n\t\"capacity\": 10\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/role/:id_role",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"role",
+										":id_role"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										},
+										{
+											"key": "id_role",
+											"value": "91"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete role",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/role/:id_role",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"role",
+										":id_role"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										},
+										{
+											"key": "id_role",
+											"value": "91"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "team",
+					"item": [
+						{
+							"name": "user",
+							"item": [
+								{
+									"name": "Assign user to project",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token_persistent}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"username\": \"fluffynoob-g49596536\",\n\t\"projectRoleId\": 86\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/project/:id_project/team/user",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"project",
+												":id_project",
+												"team",
+												"user"
+											],
+											"variable": [
+												{
+													"key": "id_project",
+													"value": "44"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove user from project",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token_persistent}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"username\": \"fluffynoob-g49596536\"\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/project/:id_project/team/user",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"project",
+												":id_project",
+												"team",
+												"user"
+											],
+											"variable": [
+												{
+													"key": "id_project",
+													"value": "45"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Get project team",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/team",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"team"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "44"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Join project",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"projectRoleId\": 92\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/team",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"team"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "44"
+										}
+									]
+								},
+								"description": "Join project as <role>"
+							},
+							"response": []
+						},
+						{
+							"name": "Leave project",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/team",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"team"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "14a75299-a896-474a-a41b-b4453dee7704",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "d00f068f-7c2a-4dd0-b9a4-e5350e14796d",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "iterations",
+					"item": [
+						{
+							"name": "Get iterations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/iterations",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"iterations"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create iteration",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"title\": \"Iteration two\",\n\t\"deadline\" : 1555240763483\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/iterations",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"iterations"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "iteration",
+					"item": [
+						{
+							"name": "tasks",
+							"item": [
+								{
+									"name": "Get all tasks in iteration",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token_persistent}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{host}}/api/project/:id_project/iteration/:id_iteration/tasks",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"project",
+												":id_project",
+												"iteration",
+												":id_iteration",
+												"tasks"
+											],
+											"variable": [
+												{
+													"key": "id_project",
+													"value": "45"
+												},
+												{
+													"key": "id_iteration",
+													"value": "47"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create task",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token_persistent}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"title\": \"Task title\",\n\t\"description\": \"\",\n\t\"pointsMin\": 5,\n\t\"pointsMax\": 10\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/project/:id_project/iteration/:id_iteration/tasks",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"project",
+												":id_project",
+												"iteration",
+												":id_iteration",
+												"tasks"
+											],
+											"variable": [
+												{
+													"key": "id_project",
+													"value": "45"
+												},
+												{
+													"key": "id_iteration",
+													"value": "47"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "task",
+							"item": [
+								{
+									"name": "Get task",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token_persistent}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{host}}/api/project/:id_project/iteration/:id_iteration/task/:id_task",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"project",
+												":id_project",
+												"iteration",
+												":id_iteration",
+												"task",
+												":id_task"
+											],
+											"variable": [
+												{
+													"key": "id_project",
+													"value": "45"
+												},
+												{
+													"key": "id_iteration",
+													"value": "47"
+												},
+												{
+													"key": "id_task",
+													"value": "45"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update task",
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{token_persistent}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"title\": \"Changed task title\",\n\t\"description\": \"Description changed\",\n\t\"pointsMin\": 10,\n\t\"pointsMax\": 100\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/project/:id_project/iteration/:id_iteration/task/:id_task",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"project",
+												":id_project",
+												"iteration",
+												":id_iteration",
+												"task",
+												":id_task"
+											],
+											"variable": [
+												{
+													"key": "id_project",
+													"value": "45"
+												},
+												{
+													"key": "id_iteration",
+													"value": "47"
+												},
+												{
+													"key": "id_task",
+													"value": "45"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Remove task",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token_persistent}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{host}}/api/project/:id_project/iteration/:id_iteration/task/:id_task",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"project",
+												":id_project",
+												"iteration",
+												":id_iteration",
+												"task",
+												":id_task"
+											],
+											"variable": [
+												{
+													"key": "id_project",
+													"value": "45"
+												},
+												{
+													"key": "id_iteration",
+													"value": "47"
+												},
+												{
+													"key": "id_task",
+													"value": "45"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Get iteration",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/iteration/:id_iteration",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"iteration",
+										":id_iteration"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										},
+										{
+											"key": "id_iteration",
+											"value": "48"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update iteration",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"title\": \"Iteration two 2\",\n\t\"deadline\" : 1555240880083\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/iteration/:id_iteration",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"iteration",
+										":id_iteration"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										},
+										{
+											"key": "id_iteration",
+											"value": "48"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove iteration",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/project/:id_project/iteration/:id_iteration",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"project",
+										":id_project",
+										"iteration",
+										":id_iteration"
+									],
+									"variable": [
+										{
+											"key": "id_project",
+											"value": "45"
+										},
+										{
+											"key": "id_iteration",
+											"value": "47"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Remove project",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/project/:id_project",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"project",
+								":id_project"
+							],
+							"variable": [
+								{
+									"key": "id_project",
+									"value": "15"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "projects",
+			"item": [
+				{
+					"name": "category",
+					"item": [
+						{
+							"name": "Update category",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Category\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/projects/category/:id_category",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"projects",
+										"category",
+										":id_category"
+									],
+									"variable": [
+										{
+											"key": "id_category",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete category",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/projects/category/:id_category",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"projects",
+										"category",
+										":id_category"
+									],
+									"variable": [
+										{
+											"key": "id_category",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "categories",
+					"item": [
+						{
+							"name": "Get categories",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/projects/categories",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"projects",
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create category",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Experiments 1\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/projects/categories",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"projects",
+										"categories"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "dc647620-c645-4d05-9728-56a15a300d6d",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "9468f66e-7036-4461-bf11-e8e67079dcec",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "search",
+					"item": [
+						{
+							"name": "Search project by params",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_persistent}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"category\": 1,\n\t\n\t\"isArchived\": false,\n\t\"isPublic\": false,\n\t\"hasOpenVacancies\": false\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/projects/search",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"projects",
+										"search"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token_persistent}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"category\": 4,\n\t\n\t\"isArchived\": false,\n\t\"isPublic\": false,\n\t\"hasOpenVacancies\": false\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/projects/search",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"projects",
+												"search"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Access-Control-Allow-Methods",
+											"value": "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+										},
+										{
+											"key": "Access-Control-Allow-Headers",
+											"value": "Origin, Accept, Content-Type, Authorization"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1353"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"549-7ex2plWQ3nasQH3GwluaiFgtUQM\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 22 Jun 2019 14:42:57 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"cod\": 200,\n    \"typ\": \"success\",\n    \"msg\": \"Found projects\",\n    \"dat\": {\n        \"query\": {\n            \"category\": 4,\n            \"isArchived\": false,\n            \"isPublic\": false,\n            \"hasOpenVacancies\": false\n        },\n        \"projects\": [\n            [\n                {\n                    \"id\": 1,\n                    \"name\": \"Experiments Example\",\n                    \"descriptionPublic\": \"# Header 1  sapien dui, feugiat id gravi\\n\\n## Header 2\\n\\nPhasellus sit amet eros sodales, blandit libero tincidunt, consectetur turpis. Proin hendrerit luctus ligula, quis pellentesque justo pretium non. Curabitur congue arcu vel nisi semper, sit amet imperdiet diam posuere. Vestibulum eget massa nibh. Pellentesque malesuada mi nunc. Donec semper nunc urna, id convallis nisi malesuada rhoncus. Maecenas efficitur tellus est, vel dapibus lacus cursus id. Nullam sapien dui, feugiat id gravida et, pulvinar vel mauris. Integer odio leo, volutpat sit amet nunc sit amet, tristique lacinia tellus. Sed iaculis erat at nisl vestibulum porta. Mauris in ex sit amet leo commodo cursus. Duis pulvinar eget risus id viverra. Vestibulum nisi nibh, tempus vitae diam quis, tempus luctus massa. Curabitur tellus sapien, molestie in velit id, aliquet malesuada nibh. In dignissim convallis diam sit amet aliquet. Donec molestie lacus nibh, nec dictum diam tristique sed.\",\n                    \"isArchived\": false,\n                    \"isPublic\": false,\n                    \"hasOpenVacancies\": false,\n                    \"createdAt\": \"2019-06-21T19:40:00.919Z\",\n                    \"tags\": [\n                        {\n                            \"id\": 1,\n                            \"name\": \"tag\"\n                        }\n                    ],\n                    \"category\": {\n                        \"id\": 4,\n                        \"name\": \"Category 3\"\n                    }\n                }\n            ],\n            1\n        ]\n    }\n}"
+								}
+							]
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Create project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_persistent}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Private project\",\n\t\n\t\"descriptionPublic\": \"Public descriptions ??\",\n\t\"descriptionPrivate\": \"Pricate description ??\",\n\t\n\t\"isSearchable\": true,\n\t\"isPublic\": false,\n\t\"hasOpenVacancies\": false,\n\t\n\t\"categoryId\": 1,\n\t\n\t\"roles\": [\n\t\t{\n\t\t\t\"name\": \"example\",\n\t\t\t\"capacity\": 0\n\t\t}\n\t],\n\t\n\t\"tags\": [ \"wow\", \"unique\", \"my\"],\n\t\n\t\"iterations\": [\n\t\t{\n\t\t\t\"title\": \"Iteration title 1\",\n\t\t\t\"deadline\": \"2019-04-21 14:12:10\",\n\t\t\t\"tasks\" : [\n\t\t\t\t{\n\t\t\t\t\t\"title\": \"Task title 1\",\n\t\t\t\t\t\"description\": \"Task description 1\",\n\t\t\t\t\t\"pointsMin\": 0,\n\t\t\t\t\t\"pointsMax\": 10\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"title\": \"Task title 2\",\n\t\t\t\t\t\"description\": \"Task description 2\",\n\t\t\t\t\t\"pointsMin\": 0,\n\t\t\t\t\t\"pointsMax\": 10\n\t\t\t\t}\n\t\t\t]\n\t\t},\n\t\t\n\t\t{\n\t\t\t\"title\": \"Iteration title 2\",\n\t\t\t\"deadline\": \"2019-04-24 14:12:10\",\n\t\t\t\"tasks\" : []\n\t\t}\t\n\t]\n}"
+						},
+						"url": {
+							"raw": "{{host}}/api/projects/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"projects",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8cab4d06-a141-4bbb-8e1f-e85b274d8344",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "69d882a7-fa86-48e8-af67-363742d0cafe",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "token",
+			"item": [
+				{
+					"name": "Temporary token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0f5b4bec-5062-4f2a-8e3b-1c1b832fae96",
+								"exec": [
+									"pm.test(\"Get temporary token\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"token_temporary\", jsonData.dat.tokenTmp);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/token/temporary",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"token",
+								"temporary"
+							]
+						},
+						"description": "Temporary token for authentication. Secret token between client and server. Random string."
+					},
+					"response": []
+				},
+				{
+					"name": "Persistent token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/token/persistent?tokenTmp={{token_temporary}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"token",
+								"persistent"
+							],
+							"query": [
+								{
+									"key": "tokenTmp",
+									"value": "{{token_temporary}}",
+									"description": "Temporary token from \"Temporary token\" request."
+								}
+							]
+						},
+						"description": "Authorization header has a persistent token in each request. JWT token."
+					},
+					"response": []
+				},
+				{
+					"name": "Persistent token verification",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_persistent}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/token/verify",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"token",
+								"verify"
+							]
+						},
+						"description": "Simple verification of JWT persistent token."
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a6b00843-400e-4b13-b2ca-5190500c0a5f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "12221d0e-23cb-4ab6-83ca-36e0e9bd4255",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "interpreters",
+			"item": [
+				{
+					"name": "Get interpreters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/interpreters",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"interpreters"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d8246c56-8785-4c47-8836-b05b97d57ec1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "953c185c-5da3-4d26-ba94-3688abf28672",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
